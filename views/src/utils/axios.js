@@ -52,12 +52,6 @@ const service = axios.create(config)
  * 在请求发送数据之前，对发送数据进行转换
  */
 service.interceptors.request.use(config => {
-  /**
-   * 取消请求逻辑 保存每一个页面中的所有请求
-   */
-  config.cancelToken = new axios.CancelToken(function (cancel) {
-    store.commit('pushToken', {cancelToken: cancel})
-  })
   // 每次发送请求之前判断是否存在token，如果存在，则统一在http请求的header都加上token，不用每次请求都手动添加了
   // 即使本地存在token，也有可能token是过期的，所以在响应拦截器中要对返回状态进行判断
   const token = store.state.token;
