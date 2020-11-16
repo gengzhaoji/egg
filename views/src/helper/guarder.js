@@ -16,7 +16,6 @@ export default function (router) {
    */
   router.beforeEach((to, from, next) => {
     NProgress.start();
-    store.commit('clearToken'); // 取消请求
     if (to.path !== '/login') {
       // next({
       //   path: '/login'
